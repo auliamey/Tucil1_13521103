@@ -87,7 +87,7 @@ void permutation(string& kartu, int n, vector<string>& hasil){
     }
 }
 
-void is24(string a, string b, string c, string d, vector<string> arrayhasil, double count){
+void is24(string a, string b, string c, string d, vector<string>& arrayhasil, int& count){
     double num1 = strTodouble(a), num2 = strTodouble(b), num3 = strTodouble(c), num4 = strTodouble(d);
     double ab, bc, cd;
     string hasil;
@@ -96,35 +96,39 @@ void is24(string a, string b, string c, string d, vector<string> arrayhasil, dou
     for (int i=0; i<4; i++){
         for (int j=0; j<4; j++){
             for (int k=0; k<4; k++){
+                ab = operations(operators[i], num1, num2);
+                bc = operations(operators[j], num2, num3);
+                cd = operations(operators[k], num3, num4);
+
                 //(ab)(cd)
                 //jadi (a operators[i] b) operators[j] (c operators[k] d)
-                if (operations(operators[j], operations(operators[i], num1, num2),operations(operators[k], num3, num4)) == 24){
+                if (operations(operators[j], ab, cd) == 24){
                     hasil = "(" + a + operators[i] + b + ")" + operators[j] + "(" + c + operators[k] + d + ")\n";
                     arrayhasil.push_back(hasil); 
                     count++;   
                 }
-                if (operations(operators[k],(operations(operators[j], operations(operators[i], num1, num2), num3)), num4) == 24){
+                if (operations(operators[k], operations(operators[j], ab, num3), num4) == 24){
                     //((ab)c)d
                     //((a operators[i] b) operators[j] c) operators[k] d
                     hasil = "((" + a + operators[i] + b + ")" + operators[j] + c + ")" + operators[k] + d + "\n";
                     arrayhasil.push_back(hasil);
                     count++; 
                 }
-                if (operations(operators[k], operations(operators[i], num1, operations(operators[j], num2, num3)), num4) == 24){
+                if (operations(operators[k], operations(operators[i], num1, bc), num4) == 24){
                     //(a(bc))d
                     //(a operators[i] (b operators[j] c)) operators[k] d
                     hasil = "(" + a + operators[i] + "(" + b + operators[j] + c + "))" + operators[k] + d + "\n";
                     arrayhasil.push_back(hasil);
                     count++;
                 }
-                if (operations(operators[i], num1, operations(operators[k], operations(operators[j], num2, num3), num4)) == 24){
+                if (operations(operators[i], num1, operations(operators[k], bc, num4)) == 24){
                     //a((bc)d)
                     //a operators[i] ((b operators[j] c) operators[k] d)
                     hasil = a + operators[i] + "((" + b + operators[j] + c + ")" + operators[k] + d + ")\n"; 
                     arrayhasil.push_back(hasil);
                     count++;
                 }
-                if (operations(operators[i], num1, operations(operators[j], num2, operations(operators[k], num3, num4))) == 24){
+                if (operations(operators[i], num1, operations(operators[j], num2, cd)) == 24){
                     //a(b(cd))
                     //a operators[i] (b operators[j] (c operators[k] d))
                     hasil = a + operators[i] + "(" + b + operators[j] + "(" + c + operators[k] + d + "))\n";
@@ -181,37 +185,31 @@ int main() {
     string w1, w2, w3, w4;
     vector<string> arrpermute, arrayofhasil;
     permutation(fullcard, 0, arrpermute);
-    double count = 0;
+    int ctr = 0;
 
     for (int i=0; i<arrpermute.size(); i++){
         string temp = arrpermute.at(i);
 
-        for (int j=0; fullcard[j]; ++j){
+        for (int j=0; temp[j]; ++j){
             if (j == 0){
-                w1 = fullcard[j];
+                w1 = temp[j];
             } else if (j == 1){
-                w2 = fullcard[j];
+                w2 = temp[j];
             } else if (j == 2){
-                w3 = fullcard[j];
+                w3 = temp[j];
             } else if (j == 3) {
-                w4 = fullcard[j];
+                w4 = temp[j];
             }
         }
 
-        cout << "haha";
-
-        is24(w1, w2, w3, w4, arrayofhasil, count);
+        is24(w1, w2, w3, w4, arrayofhasil, ctr);
     }
 
-    cout << "Terdapat " << count << " solusi yang ditemukan.\n";
+    cout << "Terdapat " << ctr << " solusi yang ditemukan.\n";
 
     for (int i=0; i<arrayofhasil.size(); i++){
         cout << arrayofhasil.at(i) << "\n";
     }
-
-    // cout << w1 << "\n"<< w2 << "\n" << w3 << "\n" << w4 << "\n";
-
-    // cout << strTodouble(card1) + strTodouble(card2) + strTodouble(card3) + strTodouble(card4) << "\n";
 
     return 0;
 }
