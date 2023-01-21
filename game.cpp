@@ -3,6 +3,7 @@
 #include <fstream>
 #include <vector>
 #include <time.h>
+#include "utility.cpp"
 using namespace std;
 
 double operations (string op, double num1, double num2){
@@ -19,42 +20,6 @@ double operations (string op, double num1, double num2){
     }
 
     return hasil;
-}
-
-bool checkInput(string Input){
-    bool found = false;
-    string input[14] = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
-
-    for (int i=0; i<14; i++){
-        if (Input == input[i]){
-            found = true;
-        }
-    }
-    
-    return found;
-}
-
-double strTodouble (string X){
-    string input[14] = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
-    vector<int> inputsystem;
-
-    for(int i=0; i<13; i++){
-        inputsystem.push_back(i+1);
-    }
-
-    bool found = false;
-    int it = 0;
-    double val;
-
-    while (!found){
-        if (X == input[it]){
-            found = true;
-            val = inputsystem.at(it);
-        }
-        it++;
-    }
-
-    return val;
 }
 
 void permutation(string& kartu, int n, vector<string>& hasil){
@@ -141,15 +106,11 @@ void is24(string a, string b, string c, string d, vector<string>& arrayhasil, in
     }
 } 
 
-
 int main() {
     string card1, card2, card3, card4;
     string input;
     string w1, w2, w3, w4;
     vector<string> arrpermute, arrayofhasil;
-
-
-    ofstream output("/Users/auliameydivaannandya/Documents/GitHub/24-Games/output.txt", std::ofstream::out);
 
     cout << "Pilihan Input : \n";
     cout << "1. Random Number \n2. Input User\n";
@@ -176,7 +137,7 @@ int main() {
         card3 = arrofcards[randIndex3];
         card4 = arrofcards[randIndex4];
 
-        cout << "Kartu yang didapatkan : " << endl << card1 << " " << card2 << " " << card3 << " " << card4 << endl;
+        cout << "\nKartu yang didapatkan : " << endl << card1 << " " << card2 << " " << card3 << " " << card4 << endl;
     } else if (input == "2"){
         cout << "Masukkan kartu pertama: ";
         cin >> card1;
@@ -229,6 +190,11 @@ int main() {
         card4 = "Z";
     }
 
+    clock_t start, end;
+
+    start = clock();
+    
+
     string fullcard = card1 + card2 + card3 + card4;
     permutation(fullcard, 0, arrpermute);
     int ctr = 0;
@@ -263,9 +229,16 @@ int main() {
                 }
             }
         }
-
         is24(w1, w2, w3, w4, arrayofhasil, ctr);
     }
+
+    // ...code to measure...
+    end = clock();
+
+    double duration_sec = double(end-start)/CLOCKS_PER_SEC;
+    double duration_ms = duration_sec * 1000;
+
+    cout << "Waktu eksekusi yang dibutuhkan adalah " << duration_ms << " ms\n";
 
     string solve, savefile;
 
@@ -291,17 +264,25 @@ int main() {
         cout << "\nApakah Anda ingin menyimpan di file? (yes/no) :  ";
         cin >> savefile;
         while ((savefile != "yes") and (savefile != "no")){
-            cout << "Input yang anda masukkan salah!\n Masukkan input ulang!\n";
-            cout << "\nApakah Anda ingin menyimpan di file? (yes/no) :  ";
+            cout << "Input yang anda masukkan salah!\nMasukkan input ulang!\n";
+            cout << "Apakah Anda ingin menyimpan di file? (yes/no) :  ";
             cin >> savefile;
         }
 
         if (savefile == "yes"){
+            string name;
+            cout << "Masukkan nama file yang diinginkan : ";
+            cin >> name;
+
+            string filename = name + ".txt";
+            ofstream output(filename);
+
             if (output.is_open()){
                 for (int i=0; i<arrayofhasil.size(); i++){
                     output << arrayofhasil.at(i) << "\n";
                 }
                 output.close();
+                cout << "\nFile telah tersimpan di " + filename + "\n";
             } else {
                 cout << "Terdapat masalah dalam pembukaan file\n";
             }
