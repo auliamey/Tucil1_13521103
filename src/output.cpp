@@ -6,6 +6,7 @@
 void showSolve(vector<string>& hasil, int count){
     string solve;
     string space1 = " ", space2 = "  ";
+    string awal = "                                                   ****        ", akhir = "       ";
     boldcyan();
     cout << "\n\n                                                   **************************************\n";
     cout << "                                                   ****      "; boldpurple(); cout << "SHOW THE SOLUTIONS?     ";
@@ -36,15 +37,15 @@ void showSolve(vector<string>& hasil, int count){
         cout << "                                                   ****                              ****\n";
         for (int i=0; i<hasil.size(); i++){
             if (count == 4){
-                cout << "                                                   ****        "; boldyellow(); cout<< hasil.at(i) << "       ";
+                cout << awal; boldyellow(); cout<< hasil.at(i) << akhir;
             } else if (count == 3){
-                cout << "                                                   ****         "; boldyellow(); cout<< hasil.at(i) << "       ";
+                cout << awal << space1; boldyellow(); cout<< hasil.at(i) << akhir;
             } else if (count == 2){
-                cout << "                                                   ****         "; boldyellow(); cout<< hasil.at(i) << "        ";
+                cout << awal << space1; boldyellow(); cout<< hasil.at(i) << akhir << space1;
             } else if (count == 1){
-                cout << "                                                   ****          "; boldyellow(); cout<< hasil.at(i) << "        ";
+                cout << awal << space2; boldyellow(); cout<< hasil.at(i) << akhir << space1;
             } else if (count == 0){
-                cout << "                                                   ****          "; boldyellow(); cout<< hasil.at(i) << "         ";
+                cout << awal << space2; boldyellow(); cout<< hasil.at(i) << akhir << space2;
             }
             boldcyan();
             cout << "****\n                                                   ****                              ****\n";
@@ -78,11 +79,12 @@ void saveFile(vector<string>& hasil){
 
     if (savefile == "1"){
         string name;
-        boldpurple(); cout << "                                                          Input file name  : ";
+        boldpurple(); cout << "                                                           Input file name  : ";
         cin >> name; defclr();
 
         string filename = name + ".txt";
-        ofstream output(filename);
+        string fnamesystem = "/Users/auliameydivaannandya/Documents/GitHub/24-Games/test/" + filename;
+        ofstream output(fnamesystem);
 
         if (output.is_open()){
             for (int i=0; i<hasil.size(); i++){
@@ -93,7 +95,7 @@ void saveFile(vector<string>& hasil){
             cout << "                                                              saved in " + filename + "\n";
         } else {
             boldred();
-            cout << "                                                            There was a problem while opening the file\n";
+            cout << "                                                 There was a problem while opening the file\n";
         }
         defclr();
     }
