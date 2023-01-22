@@ -13,7 +13,7 @@ void showSolve(vector<string>& hasil, int count){
     boldcyan();
     cout << "****\n                                                   **************************************\n";
     cout << "                                                   ****                              ****\n";
-    cout << "                                                   ****       "; boldyellow(); cout << "    1. YES             ";
+    cout << "                                                   ****       "; boldyellow(); cout << "     1. YES            ";
     boldcyan();
     cout << "****\n                                                   ****                              ****\n";
     cout << "                                                   ****        "; boldyellow(); cout << "    2. NO             ";
@@ -54,7 +54,7 @@ void showSolve(vector<string>& hasil, int count){
     }
 }
 
-void saveFile(vector<string>& hasil){
+void saveFile(vector<string>& hasil, int ctr){
     string savefile;
     boldcyan();
     cout << "\n\n                                                   **************************************\n";
@@ -62,7 +62,7 @@ void saveFile(vector<string>& hasil){
     boldcyan();
     cout << "****\n                                                   **************************************\n";
     cout << "                                                   ****                              ****\n";
-    cout << "                                                   ****       "; boldyellow(); cout << "    1. YES             ";
+    cout << "                                                   ****       "; boldyellow(); cout << "     1. YES            ";
     boldcyan();
     cout << "****\n                                                   ****                              ****\n";
     cout << "                                                   ****        "; boldyellow(); cout << "    2. NO             ";
@@ -83,10 +83,17 @@ void saveFile(vector<string>& hasil){
         cin >> name; defclr();
 
         string filename = name + ".txt";
-        string fnamesystem = "/Users/auliameydivaannandya/Documents/GitHub/24-Games/test/" + filename;
-        ofstream output(fnamesystem);
+        ofstream output("test/" + filename);
 
         if (output.is_open()){
+            if (ctr == 0){
+                output << "no solution found.\n";
+            } else if (ctr == 1){
+                output << ctr << " solution found\n";
+            } else {
+                output << ctr << " solutions found\n";
+            }
+
             for (int i=0; i<hasil.size(); i++){
                 output << hasil.at(i) << "\n";
             }

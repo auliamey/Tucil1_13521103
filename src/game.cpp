@@ -40,18 +40,18 @@ int main() {
             
             boldcyan();
             if (ctr == 0){
-                cout << "\n\n                                                            no solution found.";
+                cout << "\n\n\n                                                            no solution found.";
             } else if (ctr == 1){
-                cout << "\n\n                                                            " << ctr << " solution found.";
+                cout << "\n\n\n                                                            " << ctr << " solution found.";
             } else {
-                cout << "\n\n                                                            " << ctr << " solutions found.";
+                cout << "\n\n\n                                                            " << ctr << " solutions found.";
             }
             boldred();
             cout << "\n                                                         execution time : " << duration_ms << " ms\n"; defclr();
 
             if (ctr != 0){
                 showSolve(arrayofhasil, count);
-                saveFile(arrayofhasil);
+                saveFile(arrayofhasil, ctr);
             }
         }
     }

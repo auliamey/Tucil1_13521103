@@ -66,7 +66,12 @@ void uicards(string& k1, string& k2, string& k3, string& k4){
     } else{
         boldblue(); cout <<"|        |__________"; boldyellow(); cout << symbol[randsymbols4] << k4;boldblue(); cout << "|\n"; defclr();
     }
-                   
+
+    cout << "\n\n";
+    boldpurple();
+    cout << "                                                                Your Cards : \n";
+    boldyellow();
+    cout << "                                                                  " << k1 << " " << k2 << " " << k3 << " " << k4; defclr();                                   
 }
 
 bool checkInput(string Input){
@@ -119,6 +124,11 @@ void inputGenerate (string& k1, string& k2, string& k3, string& k4, bool& exit){
     }
 
     if (input == "1"){
+        boldyellow();
+        cout << "\n\n\n                                                   ======================================\n";
+        cout << "                                                   ====         "; boldblue(); cout << "RANDOM CARDS         ";
+        boldyellow();
+        cout << "====\n                                                   ======================================\n";
         srand(time(NULL));
         string arrofcards[14] = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
 

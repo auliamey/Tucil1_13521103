@@ -1,0 +1,1 @@
+g++ ./src/game.cpp -o bin/game.exe && bin/game
