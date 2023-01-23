@@ -4,15 +4,16 @@
 using namespace std;
 
 void uicards(string& k1, string& k2, string& k3, string& k4){
-    string symbol[4] = {"♦", "♣", "♥", "♠"};
+    // string symbol[4] = {"♦", "♣", "♥", "♠"}; only on mac
+    // char symbol[4] = {'♦', '♣', '♥', '♠'}; only on windows
+
+    // int randsymbols1 = rand() % 4;
+    // int randsymbols2 = rand() % 4;
+    // int randsymbols3 = rand() % 4;
+    // int randsymbols4 = rand() % 4;
+    string symbol = "$";
     string n1, n2, n3, n4;
     int count = 0;
-
-
-    int randsymbols1 = rand() % 3;
-    int randsymbols2 = rand() % 3;
-    int randsymbols3 = rand() % 3;
-    int randsymbols4 = rand() % 3;
 
     if (k1 != "10"){
         n1 = k1 + " ";
@@ -42,34 +43,34 @@ void uicards(string& k1, string& k2, string& k3, string& k4){
 
     boldblue();
     cout << "\n\n                              ____________          ____________          ____________          ____________ \n";         
-    cout << "                             |"; boldyellow(); cout << symbol[randsymbols1] << n1; boldblue(); cout << "         |        |"; boldyellow(); cout << symbol[randsymbols2] << n2; boldblue(); cout << "         |        |"; boldyellow(); cout<< symbol[randsymbols3] << n3; boldblue(); cout <<"         |        |"; boldyellow(); cout << symbol[randsymbols4] << n4; boldblue(); cout << "         |\n";
+    cout << "                             |"; boldyellow(); cout << symbol << n1; boldblue(); cout << "         |        |"; boldyellow(); cout << symbol << n2; boldblue(); cout << "         |        |"; boldyellow(); cout<< symbol << n3; boldblue(); cout <<"         |        |"; boldyellow(); cout << symbol << n4; boldblue(); cout << "         |\n";
     cout << "                             |            |        |            |        |            |        |            |\n";
     cout << "                             |            |        |            |        |            |        |            |\n";
     cout << "                             |            |        |            |        |            |        |            |\n";
-    cout << "                             |     "; boldyellow(); cout << symbol[randsymbols1] << n1; boldblue(); cout << "    |        |     "; boldyellow(); cout << symbol[randsymbols2] << n2; boldblue(); cout << "    |        |     "; boldyellow(); cout << symbol[randsymbols3] << n3;boldblue(); cout << "    |        |     "; boldyellow(); cout << symbol[randsymbols4] << n4;boldblue(); cout << "    |\n";
+    cout << "                             |     "; boldyellow(); cout << symbol << n1; boldblue(); cout << "    |        |     "; boldyellow(); cout << symbol << n2; boldblue(); cout << "    |        |     "; boldyellow(); cout << symbol << n3;boldblue(); cout << "    |        |     "; boldyellow(); cout << symbol << n4;boldblue(); cout << "    |\n";
     cout << "                             |            |        |            |        |            |        |            |\n";
     cout << "                             |            |        |            |        |            |        |            |\n";
     cout << "                             |            |        |            |        |            |        |            |\n";
 
     if (k1 == "10"){
-        cout << "                             |_________"; boldyellow(); cout << symbol[randsymbols1] << k1;
+        cout << "                             |_________"; boldyellow(); cout << symbol << k1;
     } else {
-        cout << "                             |__________"; boldyellow(); cout << symbol[randsymbols1] << k1;
+        cout << "                             |__________"; boldyellow(); cout << symbol << k1;
     }
     if (k2 == "10"){
-        boldblue(); cout << "|        |_________"; boldyellow(); cout << symbol[randsymbols2] << k2;
+        boldblue(); cout << "|        |_________"; boldyellow(); cout << symbol << k2;
     } else {
-        boldblue(); cout << "|        |__________"; boldyellow(); cout << symbol[randsymbols2] << k2;
+        boldblue(); cout << "|        |__________"; boldyellow(); cout << symbol << k2;
     }
     if (k3 == "10"){
-        boldblue(); cout << "|        |_________"; boldyellow(); cout << symbol[randsymbols3] << k3;
+        boldblue(); cout << "|        |_________"; boldyellow(); cout << symbol << k3;
     } else {
-        boldblue(); cout << "|        |__________"; boldyellow(); cout << symbol[randsymbols3] << k3;
+        boldblue(); cout << "|        |__________"; boldyellow(); cout << symbol << k3;
     }
     if (k4 == "10"){
-        boldblue(); cout <<"|        |_________"; boldyellow(); cout << symbol[randsymbols4] << k4;boldblue(); cout << "|\n"; defclr();
+        boldblue(); cout <<"|        |_________"; boldyellow(); cout << symbol << k4;boldblue(); cout << "|\n"; defclr();
     } else{
-        boldblue(); cout <<"|        |__________"; boldyellow(); cout << symbol[randsymbols4] << k4;boldblue(); cout << "|\n"; defclr();
+        boldblue(); cout <<"|        |__________"; boldyellow(); cout << symbol << k4;boldblue(); cout << "|\n"; defclr();
     }
 
     cout << "\n\n";
@@ -135,7 +136,7 @@ void inputGenerate (string& k1, string& k2, string& k3, string& k4, bool& exit){
     enterNumber();
     cin >> input; defclr();
 
-    while ((input != "1") and (input != "2") and (input != "3")){
+    while ((input != "1") && (input != "2") && (input != "3")){
         wrongInput();
         enterNumber();
         cin >> input; defclr();
@@ -202,7 +203,7 @@ void inputGenerate (string& k1, string& k2, string& k3, string& k4, bool& exit){
 
         uicards(k1, k2, k3, k4);
     } else if (input == "3"){
-        boldpurple(); cout << "\n                                                           See you later! ^~^\n"; defclr();
+        boldpurple(); cout << "\n                                                             See you later! ^~^\n"; defclr();
         exit = true;
     }
 }

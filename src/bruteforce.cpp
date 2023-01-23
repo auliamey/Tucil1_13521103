@@ -47,7 +47,7 @@ void permutation(string& kartu, int n, vector<string>& hasil){
         bool found = false;
         int i = 0;
         // cek in case kalo input nya ada yang sama
-        while (!found and i < hasil.size()){
+        while (!found && i < hasil.size()){
             if (kartu == hasil.at(i)){
                 found = true;
             }
