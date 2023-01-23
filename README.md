@@ -1,4 +1,4 @@
-# Welcome to 24-Games
+# Welcome to 24-Games🎲
 > 24 Card Solver using **Brute-Force Algorithm**
 
 <p align="center">
