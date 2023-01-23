@@ -93,7 +93,7 @@ void saveFile(vector<string>& hasil, int ctr){
             } else {
                 output << ctr << " solutions found\n";
             }
-
+            //simpan vektor ke dalam array
             for (int i=0; i<hasil.size(); i++){
                 output << hasil.at(i) << "\n";
             }

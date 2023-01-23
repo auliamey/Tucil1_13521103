@@ -3,6 +3,7 @@
 #include <vector>
 
 double operations (string op, double num1, double num2){
+    //operasi matematika
     double hasil;
 
     if (op == "+"){
@@ -19,7 +20,7 @@ double operations (string op, double num1, double num2){
 }
 
 void tenToZ(string& k1, string& k2, string& k3, string& k4, int& count){
-    //ngubah 10 ke string 1 huruf buat di permutasi
+    //Mengubah string 10 yang berupa dua digit menjadi string 1 huruf untuk di permutasi
     if (k1 == "10"){
         k1 = "Z";
         count++;
@@ -45,13 +46,14 @@ void permutation(string& kartu, int n, vector<string>& hasil){
     if(n == cardLength){
         bool found = false;
         int i = 0;
-        // in case kalo input nya ada yang sama
+        // cek in case kalo input nya ada yang sama
         while (!found and i < hasil.size()){
             if (kartu == hasil.at(i)){
                 found = true;
             }
             i++;
         }
+        //kalau berbeda, di pushback ke vector hasil
         if (!found){
             hasil.push_back(kartu);
             return;
@@ -70,6 +72,7 @@ void permutation(string& kartu, int n, vector<string>& hasil){
 }
 
 void is24(string a, string b, string c, string d, vector<string>& arrayhasil, int& count){
+    //Menghitung dengan operasi matematika dan kemungkinan kurung
     double num1 = strTodouble(a), num2 = strTodouble(b), num3 = strTodouble(c), num4 = strTodouble(d);
     double ab, bc, cd;
     string hasil;
@@ -123,6 +126,7 @@ void is24(string a, string b, string c, string d, vector<string>& arrayhasil, in
 } 
 
 void singleString(string& k1, string& k2, string& k3, string& k4, int& count, vector<string>& hasilpermutasi, vector<string>& hasil){
+    //Memisahkan hasil permutasi menjadi perdigit
     for (int i=0; i<hasilpermutasi.size(); i++){
         string temp = hasilpermutasi.at(i);
         for (int j=0; temp[j]; ++j){

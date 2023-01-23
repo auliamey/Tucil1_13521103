@@ -29,10 +29,8 @@ int main() {
 
             //hitung waktu eksekusi program
             start = clock();
-            
             permutation(fullcard, 0, arrpermute);
             singleString(w1, w2, w3, w4, ctr, arrpermute,arrayofhasil);
-
             end = clock();
 
             double duration_sec = double(end-start)/CLOCKS_PER_SEC;
