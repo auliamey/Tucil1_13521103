@@ -58,7 +58,7 @@ The 24-Game is a unique mathematics teaching tools to exercise mathematical mind
 
 
 ## Usage
-- If you're using Windows, Run **g++ .\src\game.cpp -o bin\game && .\bin\game.exe** on your terminal. I recommend you to use PowerShell for better performance.
+- If you're using Windows, Run **g++ .\src\game.cpp -o bin\game && .\bin\game.exe** on your terminal. I recommend you to use PowerShell or vsCode for better performance.
 - If you're using macOS or Linux, Run **g++ src/game.cpp -o bin/game && bin/game.exe** on your terminal.
 
 ## Author
